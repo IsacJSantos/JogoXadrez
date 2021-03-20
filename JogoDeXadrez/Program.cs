@@ -8,9 +8,23 @@ namespace JogoDeXadrez
     {
         static void Main(string[] args)
         {
-            PosicaoXadrez p = new PosicaoXadrez('c', 7);
-            Console.WriteLine(p);
-            Console.WriteLine(p.toPosicao());         
+            try
+            {
+                Tabuleiro tab = new Tabuleiro(8, 8);
+
+                tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
+                tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
+                tab.ColocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 2));
+
+                tab.ColocarPeca(new Torre(tab, Cor.Branca), new Posicao(4, 5));
+                tab.ColocarPeca(new Rei(tab, Cor.Branca), new Posicao(7, 2));
+
+                Tela.imprimirTabuleiro(tab);
+            }
+            catch (TabuleiroException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
