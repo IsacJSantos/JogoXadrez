@@ -22,7 +22,7 @@
             return pecas[pos.linha, pos.coluna];
         }
 
-        public bool ExistePeca(Posicao pos) 
+        public bool ExistePeca(Posicao pos)
         {
             ValidarPosicao(pos);
             return Peca(pos) != null;
@@ -38,16 +38,16 @@
             p.posicao = pos;
         }
 
-        public bool PosicaoValida(Posicao pos) 
+        public bool PosicaoValida(Posicao pos)
         {
-            if (pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >=colunas)
+            if (pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >= colunas)
             {
                 return false;
             }
             return true;
         }
 
-        public void ValidarPosicao(Posicao pos) 
+        public void ValidarPosicao(Posicao pos)
         {
             if (!PosicaoValida(pos))
             {
