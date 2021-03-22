@@ -1,5 +1,6 @@
 ﻿using System;
 using tabuleiro;
+using xadrez;
 namespace JogoDeXadrez
 {
     class Tela
@@ -17,7 +18,7 @@ namespace JogoDeXadrez
                     }
                     else
                     {
-                        imprimirPeca(tab.Peca(i, j));
+                        ImprimirPeca(tab.Peca(i, j));
                         Console.Write(" ");
                     }
                 }
@@ -27,7 +28,7 @@ namespace JogoDeXadrez
 
         }
 
-        public static void imprimirPeca(Peca peca) 
+        public static void ImprimirPeca(Peca peca) 
         {
             if (peca.cor == Cor.Branca)
             {
@@ -40,6 +41,14 @@ namespace JogoDeXadrez
                 Console.Write(peca);
                 Console.ForegroundColor = aux;
             }
+        }
+
+        public static PosicaoXadrez LerPosicaoXadrez() 
+        {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
+            return new PosicaoXadrez(coluna, linha);
         }
     }
 }
