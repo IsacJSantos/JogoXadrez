@@ -14,22 +14,35 @@ namespace JogoDeXadrez
 
                 while (!partida.terminada)
                 {
-                    Console.Clear();
-                    Tela.imprimirTabuleiro(partida.tab);
-                    Console.WriteLine();
+                    try
+                    {
+                        Console.Clear();
+                        Tela.imprimirTabuleiro(partida.tab);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + partida.turno);
+                        Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
 
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
+                        partida.ValidarPosicaoDeOrigem(origem);
 
-                    bool[,] posicaoesPossiveis = partida.tab.Peca(origem).MovimentosPossiveis();
+                        bool[,] posicaoesPossiveis = partida.tab.Peca(origem).MovimentosPossiveis();
 
-                    Console.Clear();
-                    Tela.imprimirTabuleiro(partida.tab, posicaoesPossiveis);
+                        Console.Clear();
+                        Tela.imprimirTabuleiro(partida.tab, posicaoesPossiveis);
 
-                    Console.Write("Destino: ");
-                    Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
+                        Console.Write("Destino: ");
+                        Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
+                        partida.ValidarPosicaoDeDestino(origem, destino);
 
-                    partida.ExecutaMovimento(origem, destino);
+                        partida.RealizaJogada(origem, destino);
+                    }
+                    catch (TabuleiroException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
+                   
 
                 }
                
