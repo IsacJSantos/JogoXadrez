@@ -1,10 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
 using tabuleiro;
 using xadrez;
 namespace JogoDeXadrez
 {
     class Tela
     {
+        public static void ImprimirPartida(PartidaDeXadrez partida)
+        {
+            imprimirTabuleiro(partida.tab);
+            Console.WriteLine();
+            ImprimirPecasCapturadas(partida);
+            Console.WriteLine("Turno: " + partida.turno);
+            Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+        }
+
+        public static void ImprimirPecasCapturadas(PartidaDeXadrez partida) 
+        {
+            Console.WriteLine("Peças capturadas");
+            Console.Write("Brancas: ");
+            ImprimirConjunto(partida.PecasCapturadas(Cor.Branca));
+            Console.Write("Preta: ");
+            ImprimirConjunto(partida.PecasCapturadas(Cor.Preta));
+            Console.WriteLine();
+        }
+
+        public static void ImprimirConjunto(HashSet<Peca> conjunto) 
+        {
+            Console.Write("[");
+            foreach (var x in conjunto)
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+            Console.WriteLine();
+        }
+
         public static void imprimirTabuleiro(Tabuleiro tab)
         {
             for (int i = 0; i < tab.linhas; i++)
@@ -19,6 +50,8 @@ namespace JogoDeXadrez
             Console.WriteLine("  A B C D E F G H");
 
         }
+
+
         public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis)
         {
             ConsoleColor fundoOriginal = Console.BackgroundColor;
